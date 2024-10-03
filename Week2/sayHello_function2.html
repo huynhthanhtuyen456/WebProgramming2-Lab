@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Interactive Rectangle Area Calculator</h1>
+    <label>Enter height:</label>
+    <input type="text" id="height"/>
+    <label>Enter width:</label>
+    <input type="text" id="width"/>
+
+    <br>
+    <br>
+    <button onclick="doCalc()">Calculate Area</button>
+    <p id="areaCalc"></p>
+    <script type="text/javascript">
+        // Need to define id="text"
+        // function sayHello() {
+        //     document.getElementById("text").innerHTML = "hello";
+        // }
+        // sayHello();
+        function getArea(width, height) {
+            area = width * height;
+            console.log(area);
+        }
+        let wallWidth = 3;
+        let wallHeight = 5;
+        getArea(wallWidth, wallHeight);
+        // Calculate the area of a rectangle
+        function calcRectangle(aWidth, aHeight) {
+            let area = aWidth * aHeight; // the new variable for storing value of area from calculation of width and height
+            return area; // return the value of area variable
+        }
+        // Process the button click
+        function doCalc() {
+            let newWidth = document.getElementById("width").value;
+            let newHeight = document.getElementById("height").value;
+            let newArea = calcRectangle(newWidth, newHeight);
+            document.getElementById("areaCalc").innerHTML = "The area of the rectangle " + newWidth + " by " + newHeight + " is " + newArea + "<br>";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Interactive Cuboid Surface Area Calculator</h1>
+
+    <div>
+        <div>
+            <!-- The input allow users to input width of cuboid -->
+            <label>Enter length:</label>
+            <input type="text" id="length"/>
+        </div>
+        <br>
+        <div>
+            <!-- The input allow users to input width of cuboid -->
+            <label>Enter height:</label>
+            <input type="text" id="height"/>
+        </div>
+        <br>
+        <div>
+            <!-- The input allow users to input width of cuboid -->
+            <label>Enter width:</label>
+            <input type="text" id="width"/>
+        </div>
+    </div>
+    <p>The equation of area of cuboid is height * length * width</p>
+    <!-- The button allow users to click to calculate area -->
+    <button onclick="doCalc()">Calculate Surface Area</button>
+
+    <!-- Display result of calculation -->
+    <p id="areaCalc"></p>
+
+    <script type="text/javascript">
+        // Calculate the area of a rectangle
+        function calcRectangle(aWidth, aHeight, aLength) {
+            let area = aWidth * aHeight * aLength; // the new variable for storing value of area from calculation of width and height
+            return area; // return the value of area variable
+        }
+        // Process the button click
+        function doCalc() {
+            let newWidth = document.getElementById("width").value; // Get width value from input with id=width
+            let newHeight = document.getElementById("height").value; // Get width value from input with id=height
+            let newLength = document.getElementById("length").value; // Get width value from input with id=length
+            let newArea = calcRectangle(newWidth, newHeight, newLength); // Call function to calculate area of rectangle
+            document.getElementById("areaCalc").innerHTML += "The surface area of the cuboid " + newWidth + " by " + newHeight + " by " + newLength + " is " + newArea.toFixed(2) + "<br>"; // Display result of calculation
+        }
+    </script>
+</body>
+</html>

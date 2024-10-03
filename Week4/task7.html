@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+</head>
+<body>
+    <div class="nav-bar"></div>
+
+    <div id="app">
+        <div class="product">
+
+            <div class="product-image">
+                <a :href="image" target="_blank">
+                    <img v-bind:src="image" v-bind:alt="altText">
+                </a>
+            </div>
+
+            <div class="product-info">
+                <h1>{{ title }}</h1>
+                <p v-if="inventory > 10">In Stock</p>
+                <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
+                <p v-else :class="{ outOfStock: !inStock}">Out of Stock</p>
+                <span v-show="onSale">On Sale!</span>
+
+                <ul>
+                    <li v-for="detail in details">{{ detail }}</li>
+                </ul>
+
+                <div class="color-box"
+                    v-for="(variant, index) in variants"
+                    :key="variant.variantId"
+                    :style="{ backgroundColor: variant.variantColor }"
+                    @mouseover="updateProduct(index)">
+                </div>
+
+                <div>
+                    <p>Sizes: </p>
+                    <ul v-for="size in sizes" :key="size.sizeId">
+                        <li>{{ size.size }}</li>
+                    </ul>
+                </div>
+
+                <button 
+                    @click="addToCart"
+                    :disabled="!inStock"
+                    :class="{ disabledButton: !inStock }">Add to Cart</button>
+                <button @click="removeFromCart">Remove from Cart</button>
+    
+                <div class="cart">
+                    <p>Cart({{cart}})</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

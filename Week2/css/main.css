@@ -1,0 +1,97 @@
+/* * {
+    color: green;
+}
+.main-content {
+    background-color: yellow;
+}
+
+a {
+    color: red;
+}
+
+h1, h2, p {
+    text-align: right;
+    color: blue;
+}
+
+.red {
+    color: #f33;
+}
+
+.yellow-bg {
+    background: #ffa;
+}
+
+#identified {
+    background-color: skyblue;
+}
+
+input[type=text] {
+    width: 150px;
+    display: block;
+    margin-bottom: 10px;
+    background-color: yellow;
+}
+
+input[type=button] {
+    width: 120px;
+    margin-left: 35px;
+    display: block;
+}
+
+div p {
+    background-color: yellow;
+}
+
+div.row * {
+    background-color: yellow;
+}
+
+div > p {
+    background-color: yellow;
+}
+
+div + p {
+    background-color: yellow;
+} */
+
+/* div ~ p {
+    background-color: yellow;
+} */
+
+p:first-child {
+    font-size: 1.5em;
+}
+
+p:last-child {
+    font-size: 0.75em;
+}
+
+/* Select the first list item */
+li:nth-child(1) {
+    color: aqua;
+}
+
+/* Select the 5th list item */
+li:nth-child(5) {
+    color: red;
+}
+
+/* Select every other list item starting with first */
+li:nth-child(odd) {
+    color: green;
+}
+
+/* Select every 3rd list item starting with first */
+li:nth-child(3n-2) {
+    color: rebeccapurple;
+}
+
+/* Select every 3rd list item starting with 2nd */
+li:nth-child(3n -1) {
+    color: chocolate;
+}
+
+a:not(.test) {
+    background-color: red;
+}
