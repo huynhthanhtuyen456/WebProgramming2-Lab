@@ -1,4 +1,5 @@
 const vocabBuilder = require('../controllers/vocabController');
+const verify = require('../middlewares/verify');
 
 module.exports = app => {
     app
@@ -9,6 +10,6 @@ module.exports = app => {
     app
         .route('/words/:wordId')
         .get(vocabBuilder.read_a_word)
-        .put(vocabBuilder.update_a_word)
-        .delete(vocabBuilder.delete_a_word)
+        .put(vocabBuilder.update_a_word, verify.Verify)
+        .delete(vocabBuilder.delete_a_word, verify.Verify)
 };

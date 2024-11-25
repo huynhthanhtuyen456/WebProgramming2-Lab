@@ -6,20 +6,30 @@
           <router-link class="item" to="/words" exact>
             <i class="comment outline icon"></i> Words
           </router-link>
-          <router-link class="item" to="/words/new" exact>
+          <router-link v-if="loggedIn" class="item" to="/words/new" exact>
             <i class="plus circle icon"></i> New
           </router-link>
-          <router-link class="item" to="/test" exact>
+          <router-link v-if="loggedIn" class="item" to="/test" exact>
             <i class="graduation cap icon"></i> Test
+          </router-link>
+          <router-link class="item" to="/me" exact>
+            <i class="user icon"></i> About Us
+          </router-link>
+          <a v-if="loggedIn" class="item" @click="logOut" exact>
+            <i class="user icon"></i> Log Out
+          </a>
+          <router-link v-else class="item" to="/login" exact>
+            <i class="user icon"></i> Log In
           </router-link>
         </div>
       </div>
     </div>
 
     <div class="ui text container">
+      <flash-message class="myFlash"></flash-message>
       <div class="ui one column grid">
         <div class="column">
-          <router-view/>
+          <router-view />
         </div>
       </div>
     </div>
@@ -29,6 +39,17 @@
 <script>
 export default {
   name: "app",
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    }
+  },
+  methods: {
+    logOut() {
+      this.$store.commit("destroyToken");
+      this.$router.push("/login");
+    }
+  }
 };
 </script>
 
