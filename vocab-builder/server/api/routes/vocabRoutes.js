@@ -8,8 +8,8 @@ module.exports = app => {
         .post(vocabBuilder.create_a_word);
     
     app
-        .route('/words/:wordId')
-        .get(vocabBuilder.read_a_word)
-        .put(vocabBuilder.update_a_word, verify.Verify)
-        .delete(vocabBuilder.delete_a_word, verify.Verify)
+        .route('/words/:wordId', verify.Verify)
+        .get(verify.Verify, vocabBuilder.read_a_word)
+        .put(verify.Verify, vocabBuilder.update_a_word)
+        .delete(verify.Verify, vocabBuilder.delete_a_word)
 };
