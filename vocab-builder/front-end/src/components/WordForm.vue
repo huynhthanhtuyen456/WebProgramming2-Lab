@@ -2,8 +2,8 @@
   <form action="#" @submit.prevent="onSubmit">
     <p v-if="errorsPresent" class="error">Please fill out both fields!</p>
     <div class="ui labeled input fluid">
-      <a v-if="!hasThirdLanguage" class="positive ui button" @click="add">Add third language</a>
-      <a v-else class="positive ui button" @click="add">Remove third language</a>
+      <a v-if="!thirdLanguage" class="positive ui button" @click="add">Show third language</a>
+      <a v-else class="positive ui button" @click="add">Hide third language</a>
     </div>
 
     <div class="ui labeled input fluid">
@@ -16,7 +16,7 @@
       <input type="text" placeholder="Enter word..." v-model="word.english" />
     </div>
 
-    <div v-if="hasThirdLanguage" class="ui labeled input fluid">
+    <div v-if="thirdLanguage" class="ui labeled input fluid">
       <div class="ui label"><i class="france flag"></i> French</div>
       <input type="text" placeholder="Enter word..." v-model="word.french" />
     </div>
@@ -46,12 +46,6 @@ export default {
       errorsPresent: false,
       thirdLanguage: false,
     };
-  },
-  computed: {
-    hasThirdLanguage() {
-      this.thirdLanguage = this.word.french ? true : false;
-      return this.thirdLanguage;
-    }
   },
   methods: {
     onSubmit: function () {

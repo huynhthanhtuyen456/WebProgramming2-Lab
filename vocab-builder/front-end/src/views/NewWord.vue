@@ -18,8 +18,10 @@ export default {
   methods: {
     createOrUpdate: async function (word) {
       const res = await api.createWord(word);
-      this.flash("Word created", "success");
-      this.$router.push(`/words/${res._id}`);
+      if (res) {
+        this.flash("Word created", "success");
+        this.$router.push(`/words/${res._id}`);
+      }
     },
   },
 };

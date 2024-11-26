@@ -2,6 +2,7 @@ import axios from "axios";
 import Vue from "vue";
 import VueFlashMessage from "vue-flash-message";
 import "vue-flash-message/dist/vue-flash-message.min.css";
+import store from "@/store";
 
 Vue.use(VueFlashMessage, {
   messageOptions: {
@@ -39,6 +40,16 @@ function setToken() {
     }
   );
 }
+
+axios.interceptors.response.use(response => {
+  return response;
+}, error => {
+  if (error.response.status === 401) {
+      store.commit("destroyToken");
+      vm.flash("Your session is expired! You should log in to renew session.", "error")
+  }
+  return Promise.reject(error);
+});
 
 export const api = {
   getWord: handleError(async (id) => {
