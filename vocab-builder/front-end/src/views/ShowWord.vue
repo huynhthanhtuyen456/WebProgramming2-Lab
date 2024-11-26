@@ -11,7 +11,7 @@
       <input type="text" readonly :value="word.english" />
     </div>
     <div class="actions">
-      <router-link
+      <router-link v-if="loggedIn"
         :to="{ name: 'edit', params: { id: this.$route.params.id } }"
       >
         Edit word
@@ -29,6 +29,11 @@ export default {
     return {
       word: "",
     };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    }
   },
   async mounted() {
     this.word = await api.getWord(this.$route.params.id);

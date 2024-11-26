@@ -1,6 +1,10 @@
 <template>
   <div>
     <h1>Words</h1>
+    <div class="ui labeled input fluid">
+        <div class="ui label"><i class="search icon"></i> Search</div>
+        <input type="text" name="search-box" @keyup="searchWords"/>
+    </div>
     <table id="words" class="ui celled compact table">
       <thead>
         <th>English</th>
@@ -40,6 +44,11 @@ export default {
   data() {
     return {
       words: [],
+      languages: [
+        { text: "German", key: "german" },
+        { text: "English", key: "english" },
+      ],
+      selected: "german",
     };
   },
   methods: {
@@ -51,9 +60,28 @@ export default {
       const newWords = this.words.filter((word) => word._id !== id);
       this.words = newWords;
     },
+    async searchWords(e) {
+        this.words = await api.searchWords(e.target.value.trim());
+        console.log(this.words);
+    }
   },
   async mounted() {
     this.words = await api.getWords();
   },
 };
 </script>
+
+<style>
+    input[name="search-box"] {
+        display: block;
+        margin: 2rem auto;
+        max-width: 500px;
+        width: 95%;
+        padding: 0.5rem 1rem;
+    }
+
+    /* .search-item {
+        margin: 2rem auto;
+        max-width: 500px;
+    } */
+</style>

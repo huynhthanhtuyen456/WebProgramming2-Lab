@@ -2,7 +2,17 @@ const mongoose = require('mongoose');
 const Vocab = mongoose.model('Vocab');
 
 exports.list_all_words = (req, res) => {
-    Vocab.find({}, (err, words) => {
+    Vocab.find({}).sort({ english: 'asc', german: 'asc' }).exec((err, words) => {
+        if (err) res.send(err);
+        res.json(words);
+    });
+};
+
+exports.search = async (req, res) => {
+    var term = req.query.term;
+    var query = {$text: { $search: term }};
+    if (!term) query = {};
+    Vocab.find(query).sort({ english: 'asc', german: 'asc' }).exec((err, words) => {
         if (err) res.send(err);
         res.json(words);
     });

@@ -21,6 +21,24 @@ const handleError =
     fn(...params).catch((error) => {
       console.log(error);
     });
+  
+function setToken() {
+  axios.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('access_token');
+
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        return config;
+    },
+
+    (error) => {
+        return Promise.reject(error);
+    }
+  );
+}
 
 export const api = {
   getWord: handleError(async (id) => {
@@ -31,15 +49,22 @@ export const api = {
     const res = await axios.get(wordsURL);
     return res.data;
   }),
+  searchWords: handleError(async (term) => {
+    const res = await axios.get(`${wordsURL}search?term=${term}`);
+    return res.data;
+  }),
   deleteWord: handleError(async (id) => {
+    setToken();
     const res = await axios.delete(wordsURL + id);
     return res.data;
   }),
   createWord: handleError(async (payload) => {
+    setToken();
     const res = await axios.post(wordsURL, payload);
     return res.data;
   }),
   updateWord: handleError(async (payload) => {
+    setToken();
     const res = await axios.put(wordsURL + payload._id, payload);
     return res.data;
   }),

@@ -20,7 +20,6 @@ export default new Vuex.Store({
   },
   getters: {
     loggedIn(state) {
-      console.log(state)
       return state.accessToken != null;
     },
   },

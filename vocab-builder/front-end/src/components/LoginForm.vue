@@ -9,6 +9,7 @@
       <input
         type="email"
         id="EmailLabel"
+        required
         placeholder="Enter your email..."
         v-model="authentication.email"
       />
@@ -21,6 +22,7 @@
       <input
         type="password"
         id="PasswordLabel"
+        required
         placeholder="Enter your password..."
         v-model="authentication.password"
       />

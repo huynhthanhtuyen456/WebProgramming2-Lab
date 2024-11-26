@@ -16,4 +16,5 @@ const VocabSchema = new Schema(
     { collection: 'vocab' }
 );
 
+VocabSchema.index({ english: "text", german: "text" });
 module.exports = mongoose.model('Vocab', VocabSchema);
