@@ -14,7 +14,8 @@ const VocabSchema = new Schema(
         },
         french: {
             type: String,
-        }
+        },
+        additionalLanguages: {}
     },
     { collection: 'vocab3' }
 );

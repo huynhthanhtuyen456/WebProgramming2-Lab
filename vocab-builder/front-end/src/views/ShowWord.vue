@@ -14,6 +14,10 @@
       <div class="ui label"><i class="france flag"></i> France</div>
       <input type="text" readonly :value="word.french" />
     </div>
+    <div v-for="(value, name, index) in word.additionalanguages" class="ui labeled input fluid">
+      <div class="ui label"><i :class="[languages[name].code]" class="flag"></i> {{languages[name].name}}</div>
+      <input type="text" readonly :value="value" />
+    </div>
     <div class="actions">
       <router-link v-if="loggedIn"
         :to="{ name: 'edit', params: { id: this.$route.params.id } }"
@@ -26,12 +30,14 @@
 
 <script>
 import { api } from "@/helpers/helpers";
+import { DictLanguages } from "@/helpers/constants";
 
 export default {
   name: "show",
   data() {
     return {
-      word: "",
+      word: {},
+      languages: DictLanguages
     };
   },
   computed: {
