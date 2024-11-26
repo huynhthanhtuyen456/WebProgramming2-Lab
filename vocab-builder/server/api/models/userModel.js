@@ -64,8 +64,7 @@ UserSchema.methods.generateAccessJWT = function () {
       last_name: this.last_name
     };
     return jwt.sign(payload, SECRET_ACCESS_TOKEN, {
-      expiresIn: '1s',
-    //   expiresIn: '20m',
+      expiresIn: '20m',
     });
   };
 
