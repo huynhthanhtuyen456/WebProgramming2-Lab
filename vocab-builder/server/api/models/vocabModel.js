@@ -11,10 +11,14 @@ const VocabSchema = new Schema(
         german: {
             type: String,
             required: 'German word cannot be blank'
+        },
+        french: {
+            type: String,
+            required: 'French word cannot be blank'
         }
     },
-    { collection: 'vocab' }
+    { collection: 'vocab3' }
 );
 
-VocabSchema.index({ english: "text", german: "text" });
+VocabSchema.index({ english: "text", german: "text", french: "text" });
 module.exports = mongoose.model('Vocab', VocabSchema);

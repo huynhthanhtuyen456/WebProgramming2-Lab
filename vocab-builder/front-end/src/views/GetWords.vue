@@ -9,22 +9,24 @@
       <thead>
         <th>English</th>
         <th>German</th>
+        <th>French</th>
         <th colspan="3"></th>
       </thead>
       <tr v-for="(word, i) in words" :key="i">
         <td>{{ word.english }}</td>
         <td>{{ word.german }}</td>
+        <td>{{ word.french }}</td>
         <td width="75" class="center aligned">
           <router-link :to="{ name: 'show', params: { id: word._id } }"
             >Show</router-link
           >
         </td>
-        <td width="75" class="center aligned">
+        <td v-if="loggedIn" width="75" class="center aligned">
           <router-link :to="{ name: 'edit', params: { id: word._id } }"
             >Edit</router-link
           >
         </td>
-        <td
+        <td v-if="loggedIn"
           width="75"
           class="center aligned"
           @click.prevent="onDestroy(word._id)"
@@ -41,12 +43,18 @@ import { api } from "@/helpers/helpers";
 
 export default {
   name: "words",
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn;
+    }
+  },
   data() {
     return {
       words: [],
       languages: [
         { text: "German", key: "german" },
         { text: "English", key: "english" },
+        { text: "French", key: "french" },
       ],
       selected: "german",
     };

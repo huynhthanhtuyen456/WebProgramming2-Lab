@@ -10,6 +10,10 @@
       <div class="ui label"><i class="united kingdom flag"></i> English</div>
       <input type="text" readonly :value="word.english" />
     </div>
+    <div class="ui labeled input fluid">
+      <div class="ui label"><i class="france flag"></i> France</div>
+      <input type="text" readonly :value="word.french" />
+    </div>
     <div class="actions">
       <router-link v-if="loggedIn"
         :to="{ name: 'edit', params: { id: this.$route.params.id } }"

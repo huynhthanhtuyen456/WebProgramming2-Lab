@@ -13,6 +13,15 @@
         />
       </div>
       <div class="ui labeled input fluid">
+        <div class="ui label"><i class="france flag"></i> France</div>
+        <input
+          type="text"
+          readonly
+          :disabled="testOver"
+          :value="currWord.french"
+        />
+      </div>
+      <div class="ui labeled input fluid">
         <div class="ui label"><i class="united kingdom flag"></i> English</div>
         <input
           type="text"
