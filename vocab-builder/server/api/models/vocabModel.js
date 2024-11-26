@@ -14,7 +14,6 @@ const VocabSchema = new Schema(
         },
         french: {
             type: String,
-            required: 'French word cannot be blank'
         }
     },
     { collection: 'vocab3' }

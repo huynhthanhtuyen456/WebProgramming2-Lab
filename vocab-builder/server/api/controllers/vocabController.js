@@ -20,7 +20,6 @@ exports.search = async (req, res) => {
 
 exports.create_a_word = (req, res) => {
     const newWord = new Vocab(req.body);
-    console.log(newWord);
     newWord.save((err, word) => {
         if (err) res.send(err);
         res.json(word);
