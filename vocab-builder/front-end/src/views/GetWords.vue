@@ -10,7 +10,7 @@
         <th>English</th>
         <th>German</th>
         <th>French</th>
-        <th colspan="3"></th>
+        <th colspan="3">Actions</th>
       </thead>
       <tr v-for="(word, i) in words" :key="i">
         <td>{{ word.english }}</td>
