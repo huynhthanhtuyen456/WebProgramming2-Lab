@@ -7,8 +7,8 @@
         <i class="flag icon"></i>
         Select a language to test
         <div class="menu">
-          <div class="item" v-for="language in listLanguages">
-            <div @click="selectTestLang(language)"><i class="flag" :class="[language.code]"></i> {{language.name}}</div>
+          <div class="item" v-for="language in listLanguages" @click="selectTestLang(language)">
+            <div><i class="flag" :class="[language.code]"></i> {{language.name}}</div>
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@
             <i class="user icon"></i> About Us
           </router-link>
           <a v-if="loggedIn" class="item" @click="logOut" exact>
-            <i class="user icon"></i> Log Out
+            <i class="user icon"></i> ({{ user.first_name + " " + user.last_name }}) Log Out
           </a>
           <router-link v-else class="item" to="/login" exact>
             <i class="user icon"></i> Log In
@@ -45,7 +45,10 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.getters.loggedIn;
-    }
+    },
+    user() {
+      return this.$store.getters.user;
+    },
   },
   methods: {
     logOut() {
