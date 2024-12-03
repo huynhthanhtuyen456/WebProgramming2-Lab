@@ -21,6 +21,12 @@ const handleError =
   (...params) =>
     fn(...params).catch((error) => {
       console.log(error);
+      if (error.response && error.response.data.message) {
+        vm.flash(error.response.data.message, "error")
+      }
+      else {
+        vm.flash(error.message, "error")
+      }
     });
   
 function setToken() {
@@ -81,7 +87,10 @@ export const api = {
   }),
   login: handleError(async (payload) => {
     const res = await axios.post(baseURL + "login", payload);
-    console.log(res.data);
+    return res.data;
+  }),
+  register: handleError(async (payload) => {
+    const res = await axios.post(baseURL + "register", payload);
     return res.data;
   }),
 };

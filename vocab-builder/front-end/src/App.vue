@@ -21,6 +21,9 @@
           <router-link v-else class="item" to="/login" exact>
             <i class="user icon"></i> Log In
           </router-link>
+          <router-link v-if="!loggedIn" class="item" to="/register" exact>
+            <i class="graduation cap icon"></i> Register
+          </router-link>
         </div>
       </div>
     </div>

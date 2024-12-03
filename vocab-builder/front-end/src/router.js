@@ -7,6 +7,7 @@ import EditWord from "@/views/EditWord.vue";
 import TestWord from "@/views/TestWord.vue";
 import AboutMe from "@/views/AboutMe.vue";
 import LoginView from "@/views/LoginView.vue";
+import RegisterUser from "@/views/RegisterUser.vue";
 
 Vue.use(Router);
 
@@ -63,6 +64,11 @@ export default new Router({
             path: '/login',
             name: 'login',
             component: LoginView
-        }
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: RegisterUser
+        },
     ]
 });
