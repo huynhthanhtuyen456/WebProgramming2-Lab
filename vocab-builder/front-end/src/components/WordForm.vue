@@ -79,6 +79,17 @@ export default {
       selectedLanguages: {}
     };
   },
+  watch: {
+    word() {
+      if (this.word.additionalLanguages) {
+        let keys = Object.keys(this.word.additionalLanguages);
+        keys.forEach(element => {
+          let obj = this.listLanguages.find(obj => obj.field === element)
+          if (obj) this.languages.push(obj);
+        });
+      }
+    }
+  },
   methods: {
     onSubmit: function () {
       if (this.word.english === "" || this.word.german === "" || this.word.french === "") {
