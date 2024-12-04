@@ -65,7 +65,7 @@ export default new Vuex.Store({
               access: response.access_token,
             });
             resolve();
-          }).catch((error) => { vm.flash("Authenticated failed with wrong email or password!", "error")});
+          }).catch((error) => {});
       });
     },
     userLogout(context) {

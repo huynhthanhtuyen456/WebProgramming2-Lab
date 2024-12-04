@@ -24,6 +24,10 @@ const handleError =
       if (error.response && error.response.data.message) {
         vm.flash(error.response.data.message, "error")
       }
+      else if (error.status === 401) {
+        store.commit("destroyToken");
+        vm.flash("Your session is expired! You should log in to renew session.", "error")
+      }
       else {
         vm.flash(error.message, "error")
       }
@@ -47,15 +51,16 @@ function setToken() {
   );
 }
 
-axios.interceptors.response.use(response => {
-  return response;
-}, error => {
-  if (error.response.status === 401) {
-      store.commit("destroyToken");
-      vm.flash("Your session is expired! You should log in to renew session.", "error")
-  }
-  return Promise.reject(error);
-});
+// TODO: Should a respone handler to process any status code and any error response
+// axios.interceptors.response.use(response => {
+//   return response;
+// }, error => {
+//   if (error.response.status === 401) {
+//       store.commit("destroyToken");
+//       vm.flash("Your session is expired! You should log in to renew session.", "error")
+//   }
+//   return Promise.reject(error);
+// });
 
 export const api = {
   getWord: handleError(async (id) => {

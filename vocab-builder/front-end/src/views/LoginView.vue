@@ -7,7 +7,6 @@
 
 <script>
 import LoginForm from '@/components/LoginForm.vue';
-import { api } from '@/helpers/helpers';
 
 export default {
     name: 'login',
