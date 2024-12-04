@@ -51,16 +51,14 @@ function setToken() {
   );
 }
 
-// TODO: Should a respone handler to process any status code and any error response
-// axios.interceptors.response.use(response => {
-//   return response;
-// }, error => {
-//   if (error.response.status === 401) {
-//       store.commit("destroyToken");
-//       vm.flash("Your session is expired! You should log in to renew session.", "error")
-//   }
-//   return Promise.reject(error);
-// });
+axios.interceptors.response.use(response => {
+  return response;
+}, error => {
+  if (error.response.status === 401) {
+      store.commit("destroyToken");
+  }
+  return Promise.reject(error);
+});
 
 export const api = {
   getWord: handleError(async (id) => {
