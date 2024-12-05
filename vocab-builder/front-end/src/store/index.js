@@ -21,7 +21,8 @@ export default new Vuex.Store({
     user: {
       first_name: localStorage.getItem('first_name'),
       last_name: localStorage.getItem('last_name'),
-    }
+    },
+    exp: localStorage.getItem('exp'),
   },
   getters: {
     loggedIn(state) {
@@ -42,6 +43,7 @@ export default new Vuex.Store({
       };
       localStorage.setItem('first_name', payload.first_name);
       localStorage.setItem('last_name', payload.last_name);
+      localStorage.setItem('exp', payload.exp);
     },
     destroyToken(state) {
       state.accessToken = null;
@@ -50,6 +52,7 @@ export default new Vuex.Store({
       state.last_name = null;
       localStorage.removeItem('first_name')
       localStorage.removeItem('last_name')
+      localStorage.removeItem('exp')
     },
   },
   actions: {
